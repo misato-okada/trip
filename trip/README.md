@@ -32,7 +32,7 @@ CREATE TABLE users(
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE restaurants {
+CREATE TABLE restaurants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150) NOT NULL,
     adress VARCHAR(255) NOT NULL,
@@ -56,9 +56,9 @@ CREATE TABLE restaurants {
         FOREIGN KEY (type_id)
         REFERENCES restaurant_type(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE hotels {
+CREATE TABLE hotels (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150) NOT NULL,
     adress VARCHAR(255) NOT NULL,
@@ -80,9 +80,9 @@ CREATE TABLE hotels {
         FOREIGN KEY (type_id)
         REFERENCES hotel_type(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE restaurant_plans {
+CREATE TABLE restaurant_plans (
     id INT PRIMARY KEY AUTO_INCREMENT,
     restaurant_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -95,9 +95,9 @@ CREATE TABLE restaurant_plans {
         FOREIGN KEY (restarurant_id)
         REFERENCES restaurants(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE hotel_plans {
+CREATE TABLE hotel_plans (
     id INT PRIMARY KEY AUTO_INCREMENT,
     hotel_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -111,9 +111,9 @@ CREATE TABLE hotel_plans {
         FOREIGN KEY (hotel_id)
         REFERENCES hotels(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-}
+);
 
-CREATE TABLE restaurant_reservation {
+CREATE TABLE restaurant_reservation (
     id INT PRIMARY KEY AUTO_INCREMENT,
     plan_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -131,10 +131,10 @@ CREATE TABLE restaurant_reservation {
     CONSTRAINT fk_resevation_user_id
         FOREIGN KEY (user_id)
         REFERENCES users(id)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-};
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-CREATE TABLE hotel_reservation {
+CREATE TABLE hotel_reservation (
     id INT PRIMARY KEY AUTO_INCREMENT,
     plan_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -149,20 +149,20 @@ CREATE TABLE hotel_reservation {
         FOREIGN KEY (plan_id)
         REFERENCES hotel_plans(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT fk_resevation_user_id
+    CONSTRAINT fk_hotel_resevation_user_id
         FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE areas {
+CREATE TABLE areas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-};
+);
 
-CREATE TABLE prefectures {
+CREATE TABLE prefectures (
     id INT PRIMARY KEY AUTO_INCREMENT,
     area_id INT NOT NULL,
     name VARCHAR(10) NOT NULL,
@@ -172,29 +172,29 @@ CREATE TABLE prefectures {
         FOREIGN KEY (area_id)
         REFERENCES areas(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE restaurant_type {
+CREATE TABLE restaurant_type (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-};
+);
 
-CREATE TABLE hotel_type {
+CREATE TABLE hotel_type (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-};
+);
 
-CREATE TABLE favorite_restaurants {
+CREATE TABLE favorite_restaurants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     restaurant_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_favorite_user_id
+    CONSTRAINT fk_favorite_restaurants_user_id
         FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -202,15 +202,15 @@ CREATE TABLE favorite_restaurants {
         FOREIGN KEY (restaurant_id)
         REFERENCES restaurants(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE favorite_hotels {
+CREATE TABLE favorite_hotels (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     hotel_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_favorite_user_id
+    CONSTRAINT fk_favorite_hotels_user_id
         FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -218,9 +218,9 @@ CREATE TABLE favorite_hotels {
         FOREIGN KEY (hotel_id)
         REFERENCES hotels(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
-CREATE TABLE articles {
+CREATE TABLE articles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     prefecture_id INT NOT NULL,
     restaurant_id INT,
@@ -245,6 +245,6 @@ CREATE TABLE articles {
         FOREIGN KEY (hotel_id)
         REFERENCES hotels(id)
         ON DELETE CASCADE ON UPDATE CASCADE
-};
+);
 
 ```
