@@ -25,9 +25,9 @@ CREATE TABLE users(
     email VARCHAR(255) NOT NULL UNIQUE KEY,
     phone_number VARCHAR(11) NOT NULL UNIQUE KEY,
     password VARCHAR(20) NOT NULL,
-    adress VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     birthday DATE NOT NULL,
-    sex TINYINT(1) NOT NULL,
+    sex TINYINT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -35,9 +35,9 @@ CREATE TABLE users(
 CREATE TABLE restaurants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150) NOT NULL,
-    adress VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     prefecture_id INT NOT NULL,
-    type_id INT NOT NULL,
+    restaurant_type_id INT NOT NULL,
     phone_number VARCHAR(11) NOT NULL,
     opening_time CHAR(4) NOT NULL,
     closing_time CHAR(4) NOT NULL,
@@ -54,16 +54,16 @@ CREATE TABLE restaurants (
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_restaurants_type_id
         FOREIGN KEY (type_id)
-        REFERENCES restaurant_type(id)
+        REFERENCES restaurant_types(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE hotels (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150) NOT NULL,
-    adress VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     prefecture_id INT NOT NULL,
-    type_id INT NOT NULL,
+    hotel_type_id INT NOT NULL,
     phone_number VARCHAR(11) NOT NULL,
     minimum_amount INT NOT NULL,
     main_img VARCHAR(255),
@@ -78,7 +78,7 @@ CREATE TABLE hotels (
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_hotels_type_id
         FOREIGN KEY (type_id)
-        REFERENCES hotel_type(id)
+        REFERENCES hotel_types(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -113,12 +113,12 @@ CREATE TABLE hotel_plans (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE restaurant_reservation (
+CREATE TABLE restaurant_reservations (
     id INT PRIMARY KEY AUTO_INCREMENT,
     plan_id INT NOT NULL,
     user_id INT NOT NULL,
-    day DATE NOT NULL,
-    time TIME NOT NULL,
+    reserve_day DATE NOT NULL,
+    reserve_time TIME NOT NULL,
     people INT NOT NULL,
     price INT NOT NULL,
     total_amount INT NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE restaurant_reservation (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE hotel_reservation (
+CREATE TABLE hotel_reservations (
     id INT PRIMARY KEY AUTO_INCREMENT,
     plan_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -174,14 +174,14 @@ CREATE TABLE prefectures (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE restaurant_type (
+CREATE TABLE restaurant_types (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE hotel_type (
+CREATE TABLE hotel_types (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -246,5 +246,97 @@ CREATE TABLE articles (
         REFERENCES hotels(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- 初期データ設定
+INSERT INTO
+    areas (name)
+VALUES
+    ('北海道・東北'),
+    ('関東'),
+    ('北陸'),
+    ('甲信越'),
+    ('東海'),
+    ('近畿'),
+    ('中国地方'),
+    ('四国'),
+    ('九州・沖縄')
+;
+
+INSERT INTO
+    prefectures (name)
+VALUES
+    ('北海道'),
+    ('青森'),
+    ('岩手'),
+    ('宮城'),
+    ('秋田'),
+    ('山形'),
+    ('福島'),
+    ('茨城'),
+    ('栃木'),
+    ('群馬'),
+    ('埼玉'),
+    ('千葉'),
+    ('東京'),
+    ('神奈川'),
+    ('新潟'),
+    ('富山'),
+    ('石川'),
+    ('福井'),
+    ('山梨'),
+    ('長野'),
+    ('岐阜'),
+    ('静岡'),
+    ('愛知'),
+    ('三重'),
+    ('滋賀'),
+    ('京都'),
+    ('大阪'),
+    ('兵庫'),
+    ('奈良'),
+    ('和歌山'),
+    ('鳥取'),
+    ('島根'),
+    ('岡山'),
+    ('広島'),
+    ('山口'),
+    ('徳島'),
+    ('香川'),
+    ('愛媛'),
+    ('高知'),
+    ('福岡'),
+    ('佐賀'),
+    ('長崎'),
+    ('熊本'),
+    ('大分'),
+    ('宮崎'),
+    ('鹿児島'),
+    ('沖縄')
+;
+
+INSERT INTO
+    restaurant_types (name)
+VALUES
+    ('和食'),
+    ('中華'),
+    ('フレンチ'),
+    ('イタリアン'),
+    ('スイーツ'),
+    ('B級グルメ'),
+    ('その他')
+;
+
+INSERT INTO
+    hotel_types (name)
+VALUES
+    ('シティホテル'),
+    ('ビジネスホテル'),
+    ('温泉旅館'),
+    ('リゾートホテル'),
+    ('高級ホテル・旅館'),
+    ('ドミトリー'),
+    ('キャンプ・グランピング'),
+    ('ペット同伴OK')
+;
 
 ```
