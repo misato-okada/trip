@@ -1,0 +1,85 @@
+html {
+    font-size: 100%;
+}
+body {
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'Shippori Mincho', serif;
+    color: #2e3740;
+}
+h2 {
+    font-family: 'Shippori Mincho', serif;
+    text-align: center;
+    font-size: 3rem;
+}
+a {
+    text-decoration: none;
+    color: #2e3740;
+}
+a:hover {
+    color: #8e98a1;
+    text-decoration: underline;
+}
+ul {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+}
+
+/* header
+------------------------------- */
+header{
+    margin-top: 20px;
+}
+h1 img{
+    width: 170px;
+    margin: 0 20px;
+}
+.side {
+    display: flex;
+    justify-content: space-between;
+}
+.login-favo{
+    text-align: center;
+    display: flex;
+}
+.login, .favo {
+    padding: 20px;
+}
+.login-svg img, .favo-svg img{
+    width: 50px;
+}
+nav .side{
+    margin: 0 10%;
+}
+.g-nav {
+    font-size: 1.5rem;
+}
+
+/* home-contents
+------------------------------- */
+section {
+    margin: 100px 0;
+}
+
+/* 新着記事*/
+.new-article{
+    display: flex;
+    justify-content: center;
+}
+.new-article li {
+    margin: 20px;
+}
+.new-article img{
+    width: 350px;
+}
+.more {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* エリア一覧 */
+.area-list {
+    display: flex;
+    
+}
