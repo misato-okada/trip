@@ -17,17 +17,17 @@
     <div class="wrapper">
         <header>
             <div class="side">
-                <h1><a href="index.php"><img src="../../image/logo.jpg" alt="サイトロゴ"></a></h1>
+                <h1><a href="index.php"><img src="images/logo.jpg" alt="サイトロゴ"></a></h1>
                 <div class="login-favo">
                     <div class="login">
                             <a class="login-svg" href="">
-                                <img src="../../image/login.svg" alt="ログイン">
+                                <img src="images/login.svg" alt="ログイン">
                                 <p>ログイン</p>
                             </a>
                     </div>
                     <div class="favo">
                             <a class="favo-svg" href="">
-                                <img src="../../image/favo.svg" alt="お気に入り">
+                                <img src="images/favo.svg" alt="お気に入り">
                                 <p>お気に入り</p>
                             </a>
                     </div>
