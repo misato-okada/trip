@@ -70,6 +70,9 @@ header {
 .resp-add {
     display: none;
 }
+.choosing {
+    color: #c0c9d1;
+}
 
 /* .partition {
     position: relative;
@@ -194,6 +197,17 @@ section {
     opacity: 0.6;
 }
 
+.type-list li, .area-list li {
+    text-align: center;
+    background-color: #a4e3dc;
+    border-radius: 30px;
+    font-size: 1.2rem;
+}
+.type-list li a, .area-list li a {
+    display: block;
+    padding: 20px;
+}
+
 /* エリア一覧 */
 .area-list {
     display: grid;
@@ -201,13 +215,6 @@ section {
     gap: 20px;
     grid-template-rows: 70px 70px 70px;
     padding: 30px;
-}
-.area-list li, .type-list li {
-    text-align: center;
-    padding: 20px;
-    background-color: #a4e3dc;
-    border-radius: 30px;
-    font-size: 1.2rem;
 }
 .area-list li:hover {
     opacity: 0.6;

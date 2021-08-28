@@ -39,9 +39,9 @@
                 <nav >
                     <ul class="g-nav side">
                         <li><a href="index.html">HOME</a></li>
-                        <li class="partition"><a href="">レストラン</a></li>
-                        <li class="partition"><a href="">ホテル・旅館</a></li>
-                        <li class="partition"><a href="">特集記事</a></li>
+                        <li class="partition"><span class="choosing">レストラン</span></li>
+                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><a href="article.php">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
                         <li><a href="">ログイン</a></li>
                         <li><a href="">お気に入り</a></li>
@@ -52,9 +52,9 @@
                 <nav class="resp-none">
                     <ul class="g-nav side">
                         <li><a href="index.html">HOME</a></li>
-                        <li class="partition"><a href="">レストラン</a></li>
-                        <li class="partition"><a href="">ホテル・旅館</a></li>
-                        <li class="partition"><a href="">特集記事</a></li>
+                        <li class="partition"><span class="choosing">レストラン</span></li>
+                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><a href="article.php">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
                     </ul>
                 </nav>
@@ -77,7 +77,7 @@
                     <li class="opacity"><a href=""><img src="images/onsen.jpg" alt=""><br>森林の中でリラックス。自然を感じる露天風呂</a></li>
                 </ul>
                 <div class="more">
-                    <a href="">もっとみる</a>
+                    <a href="restaurant-list.php">一覧へ</a>
                 </div>
             </section>
 
@@ -111,8 +111,8 @@
 
         <footer>
             <ul id="footer-list" class="side">
-                <li><a href="">レストラン予約</a></li>
-                <li><a href="">ホテル・旅館予約</a></li>
+                <li><a href="restaurant.php">レストラン予約</a></li>
+                <li><a href="hotel.php">ホテル・旅館予約</a></li>
                 <li><a href="">サイトマップ</a></li>
                 <li><a href="">問い合わせ</a></li>
                 <li><a href="">会員規約</a></li>
