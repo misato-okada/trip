@@ -18,7 +18,11 @@
     <div class="wrapper">
         <header>
             <div class="side">
-                <h1><a class="logo opacity"  href="index.php"><img src="images/logo_top.jpg" alt="サイトロゴ"></a></h1>
+                <h1>
+                    <a class="logo opacity"  href="index.php">
+                        <img src="images/logo_top.jpg" alt="サイトロゴ">
+                    </a>
+                </h1>
                 <div class="login-favo">
                     <div class="login">
                         <a class="login-svg opacity" href="">

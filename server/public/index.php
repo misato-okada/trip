@@ -1,4 +1,8 @@
 <?php
+
+require_once __DIR__ . '/../common/functions.php';
+
+$dbh = connectDb(); 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,10 +22,14 @@
     <div class="wrapper">
         <header>
             <div class="side">
-                <h1><a class="logo opacity"  href="index.php"><img src="images/logo_top.jpg" alt="サイトロゴ"></a></h1>
+                <h1>
+                    <a class="logo opacity"  href="index.php">
+                        <img src="images/logo_top.jpg" alt="サイトロゴ">
+                    </a>
+                </h1>
                 <div class="login-favo">
                     <div class="login">
-                        <a class="login-svg opacity" href="">
+                        <a class="login-svg opacity" href="user/login.php">
                             <img src="images/login.svg" alt="ログイン">
                             <p>ログイン</p>
                         </a>

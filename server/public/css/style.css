@@ -206,7 +206,65 @@ section {
     opacity: 0.6;
 }
 
-/* 一覧リスト
+/* ログインページ 
+------------------------------- */
+.login-contents {
+    width: 70%;
+    margin: 0 auto;
+}
+.login-contents h2 {
+    font-size: 2.5rem;
+    padding-top: 0;
+}
+form {
+    width: 80%;
+    margin: 50px auto 100px;
+}
+label {
+    display: block;
+    margin: 10px 0px
+}
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="text"], 
+input[type="date"] {
+    display: block;
+    width: 100%;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="text"]::placeholder, 
+input[type="date"] {
+    color: #999999;
+}
+input:focus {
+    outline: none;
+}
+.btn{
+    display: block;
+    margin: 50px auto;
+    width: 50%;
+    background-color: #a4e3dc;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+}
+.btn:hover {
+    opacity: 0.6;
+}
+.sub-link {
+    display: block;
+    text-align: center;
+}
+
+/* 一覧ページリスト
 ------------------------------- */
 #list-contents {
     width: 900px;
@@ -300,11 +358,12 @@ footer {
 @media(max-width: 900px) {
     /* common */
     h2 {
-        font-family: 'Shippori Mincho', serif;
-        text-align: center;
         font-size: 2rem;
         padding: 20px 0;
     }
+    .login-contents h2 {
+    font-size: 2rem;
+}
     h3{
         font-size: 1.5rem;
     }
