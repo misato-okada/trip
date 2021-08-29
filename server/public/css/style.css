@@ -57,14 +57,14 @@ header {
 }
 
 /* ログイン・お気に入り */
-.login-favo {
+.mypage-favo {
     text-align: center;
     display: flex;
 }
-.login, .favo {
+.mypage, .favo {
     padding: 20px;
 }
-.login-svg img, .favo-svg img {
+.mypage-svg img, .favo-svg img {
     width: 40px;
 }
 
@@ -217,11 +217,11 @@ section {
 
 /* ログインページ 
 ------------------------------- */
-.login-contents {
+.user-contents {
     width: 70%;
     margin: 0 auto;
 }
-.login-contents h2 {
+.user-contents h2 {
     font-size: 2.5rem;
     padding-top: 0;
 }
@@ -370,9 +370,9 @@ footer {
         font-size: 2rem;
         padding: 20px 0;
     }
-    .login-contents h2 {
+    .user-contents h2 {
     font-size: 2rem;
-}
+    }
     h3{
         font-size: 1.5rem;
     }
@@ -380,11 +380,11 @@ footer {
     h1 img {
         width: 80%;
     }
-    .login, .favo {
+    .mypage, .favo {
         padding: 10px;
         font-size: 0.9rem;
     }
-    .login-svg img, .favo-svg img {
+    .mypage-svg img, .favo-svg img {
         width: 30px;
     }
     /* menu */
@@ -453,7 +453,7 @@ footer {
         width: 70%;
     }
     /* ログイン・お気に入り */
-    .login-favo, .resp-none {
+    .mypage-favo, .resp-none {
         display: none;
     }
     .resp-add {

@@ -23,15 +23,15 @@
                         <img src="images/logo_top.jpg" alt="サイトロゴ">
                     </a>
                 </h1>
-                <div class="login-favo">
-                    <div class="login">
-                        <a class="login-svg opacity" href="user/login.php">
-                            <img src="images/login.svg" alt="ログイン">
-                            <p>ログイン</p>
+                <div class="mypage-favo">
+                    <div class="mypage">
+                        <a class="mypage-svg opacity" href="user/login.php">
+                            <img src="images/login.svg" alt="マイページ">
+                            <p>マイページ</p>
                         </a>
                     </div>
                     <div class="favo">
-                        <a class="favo-svg opacity" href="">
+                        <a class="favo-svg opacity" href="user/login.php">
                             <img src="images/favo.svg" alt="お気に入り">
                             <p>お気に入り</p>
                         </a>
@@ -47,8 +47,8 @@
                         <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
                         <li class="partition"><a href="article.php">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
-                        <li><a href="">ログイン</a></li>
-                        <li><a href="">お気に入り</a></li>
+                        <li><a href="user/login.php">マイページ</a></li>
+                        <li><a href="user/login.php">お気に入り</a></li>
                     </ul>
                 </nav>
             </div>

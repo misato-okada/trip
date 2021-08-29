@@ -84,3 +84,58 @@ function insertUser($email, $password, $name, $tel, $address, $birthday, $sex)
 
     $stmt->execute();
 }
+
+function loginValidate($email, $password)
+{
+    $errors = [];
+
+    // バリデーション
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+    if (empty($password)) {
+        $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+
+    return $errors;
+}
+
+function findUserByEmail($email)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function findUserById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}

@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </h1>
         </div>
     </header>
-    <div class="login-contents">
+    <div class="user-contents">
         <h2>新規会員登録</h2><hr>
         <div class="form-area">
             <?php if ($errors): ?>
