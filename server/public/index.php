@@ -21,16 +21,16 @@
                 <h1><a class="logo opacity"  href="index.php"><img src="images/logo_top.jpg" alt="サイトロゴ"></a></h1>
                 <div class="login-favo">
                     <div class="login">
-                            <a class="login-svg opacity" href="">
-                                <img src="images/login.svg" alt="ログイン">
-                                <p>ログイン</p>
-                            </a>
+                        <a class="login-svg opacity" href="">
+                            <img src="images/login.svg" alt="ログイン">
+                            <p>ログイン</p>
+                        </a>
                     </div>
                     <div class="favo">
-                            <a class="favo-svg opacity" href="">
-                                <img src="images/favo.svg" alt="お気に入り">
-                                <p>お気に入り</p>
-                            </a>
+                        <a class="favo-svg opacity" href="">
+                            <img src="images/favo.svg" alt="お気に入り">
+                            <p>お気に入り</p>
+                        </a>
                     </div>
                 </div>
                 <div class="drawer resp-add">

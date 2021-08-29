@@ -21,16 +21,16 @@
                 <h1><a class="logo opacity"  href="index.php"><img src="images/logo_top.jpg" alt="サイトロゴ"></a></h1>
                 <div class="login-favo">
                     <div class="login">
-                            <a class="login-svg opacity" href="">
-                                <img src="images/login.svg" alt="ログイン">
-                                <p>ログイン</p>
-                            </a>
+                        <a class="login-svg opacity" href="">
+                            <img src="images/login.svg" alt="ログイン">
+                            <p>ログイン</p>
+                        </a>
                     </div>
                     <div class="favo">
-                            <a class="favo-svg opacity" href="">
-                                <img src="images/favo.svg" alt="お気に入り">
-                                <p>お気に入り</p>
-                            </a>
+                        <a class="favo-svg opacity" href="">
+                            <img src="images/favo.svg" alt="お気に入り">
+                            <p>お気に入り</p>
+                        </a>
                     </div>
                 </div>
                 <div class="drawer resp-add">
@@ -62,10 +62,9 @@
         </header>
 
         <div class="top-line">
-            <h2>ホテル・旅館
-            </h2>
+            <h2>ホテル・旅館</h2>
             <div>
-                <img src="images/hotel-img.jpg" alt="レストラン">
+                <img src="images/hotel-img.jpg" alt="ホテル写真">
             </div>
         </div>
 
@@ -78,7 +77,7 @@
                     <li class="opacity"><a href=""><img src="images/onsen.jpg" alt=""><br>森林の中でリラックス。自然を感じる露天風呂</a></li>
                 </ul>
                 <div class="more">
-                    <a href="hotel-list.php">一覧へ</a>
+                    <a href="hotel-list.php#list-contents">一覧へ</a>
                 </div>
             </section>
 
