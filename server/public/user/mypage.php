@@ -44,6 +44,27 @@ $current_user = findUserById($_SESSION['id'])
         <div class="user-contents">
             <h2>マイページ</h2><hr>
             <h3 class="sub-title"><?= h($current_user['name']) ?>さん</h3>
+            <div class="user-details">
+                <div class="user-info">
+                    <a href="user-info.php">ユーザー情報確認・変更</a>
+                </div>
+                <div class="">
+                    <h4>予約中プラン</h4>
+                    <ul>
+                        <li><a href=""></a></li>
+                    </ul>
+                    <a href="">予約履歴</a>
+                </div>
+                <div class="">
+                    <h4>お気に入り</h4>
+                    <ul>
+                        <li><a href=""></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="btn-area logout">
+                <a href="logout.php" class="btn">ログアウト</a>
+            </div>
         </div>
         
         <footer>

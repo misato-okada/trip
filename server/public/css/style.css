@@ -273,6 +273,19 @@ input:focus {
     text-align: center;
 }
 
+/* マイページ
+------------------------------- */
+.user-details {
+    
+}
+.logout {
+    text-align: center;
+}
+.logout a:hover {
+    text-decoration: none;
+    color: #2e3740;
+}
+
 /* 一覧ページリスト
 ------------------------------- */
 #list-contents {
