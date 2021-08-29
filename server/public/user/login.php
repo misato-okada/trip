@@ -24,16 +24,25 @@
     </header>
     <div class="login-contents">
         <h2>ログイン</h2><hr>
-        <form action="" method="post">
-            <label for="email">メールアドレス</label>
-            <input type="email" name="email" id="email" placeholder="Email">
-            <label for="password">パスワード</label>
-            <input type="password" name="password" id="password" placeholder="Password">
-            <div class="btn-area">
-                <input type="submit" value="ログイン" class="btn">
-                <a href="sign-up.php" class="sub-link">初めての方はこちら</a>
-            </div>
-        </form>
+        <div class="form-area">
+            <?php if ($errors): ?>
+                <ul class="errors">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= h($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <form action="" method="post">
+                <label for="email">メールアドレス</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+                <label for="password">パスワード</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+                <div class="btn-area">
+                    <input type="submit" value="ログイン" class="btn">
+                    <a href="sign-up.php" class="sub-link">初めての方はこちら</a>
+                </div>
+            </form>
+        </div>
     </div>
     <footer>
             <ul id="footer-list" class="side">

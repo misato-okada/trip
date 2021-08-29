@@ -37,6 +37,15 @@ h3 {
     text-align: center;
     padding: 30px 0;
 }
+.errors {
+    color: #e9555c;
+    background-color: #f8e1e5;
+    list-style: none;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+}
 
 /* header
 ------------------------------- */
@@ -216,7 +225,7 @@ section {
     font-size: 2.5rem;
     padding-top: 0;
 }
-form {
+.form-area {
     width: 80%;
     margin: 50px auto 100px;
 }
