@@ -1,3 +1,39 @@
+<?php
+
+require_once __DIR__ . '/../../common/functions.php';
+
+session_start();
+
+// ログイン判定
+if (!empty($_SESSION['id'])) {
+    header('Location: mypage.php');
+    exit;
+}
+
+
+$email = '';
+$password = '';
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_input(INPUT_POST, 'email');
+    $password = filter_input(INPUT_POST, 'password');
+
+    $errors = loginValidate($email, $password);
+
+    if (empty($errors)) {
+        $user = findUserByEmail($email);
+        // ログイン処理
+        if (password_verify($password, $user['password'])) {
+        $_SESSION['id'] = $user['id'];
+        header('Location: mypage.php');
+        exit;
+        } else {
+            $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -22,18 +58,27 @@
             </h1>
         </div>
     </header>
-    <div class="login-contents">
+    <div class="user-contents">
         <h2>ログイン</h2><hr>
-        <form action="" method="post">
-            <label for="email">メールアドレス</label>
-            <input type="email" name="email" id="email" placeholder="Email">
-            <label for="password">パスワード</label>
-            <input type="password" name="password" id="password" placeholder="Password">
-            <div class="btn-area">
-                <input type="submit" value="ログイン" class="btn">
-                <a href="sign-up.php" class="sub-link">初めての方はこちら</a>
-            </div>
-        </form>
+        <div class="form-area">
+            <?php if ($errors): ?>
+                <ul class="errors">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= h($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <form action="" method="post">
+                <label for="email">メールアドレス</label>
+                <input type="email" name="email" id="email" placeholder="Email" value="<?= h($email) ?>">
+                <label for="password">パスワード</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+                <div class="btn-area">
+                    <input type="submit" value="ログイン" class="btn">
+                    <a href="sign-up.php" class="sub-link">初めての方はこちら</a>
+                </div>
+            </form>
+        </div>
     </div>
     <footer>
             <ul id="footer-list" class="side">
