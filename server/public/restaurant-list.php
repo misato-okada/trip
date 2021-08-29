@@ -6,7 +6,7 @@
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レストランTOP | F TRIP</title>
+    <title>レストラン一覧 | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,11 @@
     <div class="wrapper">
         <header>
             <div class="side">
-                <h1><a class="logo opacity"  href="index.php"><img src="images/logo_top.jpg" alt="サイトロゴ"></a></h1>
+                <h1>
+                    <a class="logo opacity"  href="index.php">
+                        <img src="images/logo_top.jpg" alt="サイトロゴ">
+                    </a>
+                </h1>
                 <div class="login-favo">
                     <div class="login">
                         <a class="login-svg opacity" href="">
