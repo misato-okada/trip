@@ -116,7 +116,6 @@ header {
     height: 1px;
     background-color: #2e3740;
     position: absolute;
-    
 }
 .top-line div {
     text-align: center;
@@ -218,7 +217,7 @@ section {
 /* ログインページ 
 ------------------------------- */
 .user-contents {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 .user-contents h2 {
@@ -276,12 +275,48 @@ input:focus {
 /* マイページ
 ------------------------------- */
 .user-details {
-    
-}
-.logout {
+    margin: 20px auto;
     text-align: center;
+    background-color: #f4f7e2;
+    border-radius: 40px;
+    padding: 20px 0;
 }
-.logout a:hover {
+.user-details div {
+    padding: 20px 0;
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+.user-details h4 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+.reserve-link img{
+    width: 30%;
+}
+.favo-link ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.favo-link li {
+    margin: 0 15px;
+}
+.favo-link img {
+    width: 100%;
+}
+.mypage-btn {
+    text-align: center;
+    margin: 50px 0 70px;
+}
+.mypage-btn a {
+    margin: 30px auto;
+}
+.home-back-btn {
+    background-color: #dee7b2;
+}
+.mypage-btn a:hover {
     text-decoration: none;
     color: #2e3740;
 }
@@ -347,7 +382,6 @@ input:focus {
 }
 .number {
     padding: 10px;
-    /* background-color: #a4e3dc; */
 }
 
 /* 戻るボタン */
