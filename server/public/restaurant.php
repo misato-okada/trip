@@ -40,7 +40,7 @@
                 <div class="drawer resp-add">
                 <input type="checkbox" id="drawer-check" class="drawer-hidden">
                 <label for="drawer-check" class="drawer-open"><span></span></label>
-                <nav >
+                <nav>
                     <ul class="g-nav side">
                         <li><a href="index.html">HOME</a></li>
                         <li class="partition"><span class="choosing">レストラン</span></li>

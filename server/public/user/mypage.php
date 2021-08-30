@@ -43,27 +43,46 @@ $current_user = findUserById($_SESSION['id'])
 
         <div class="user-contents">
             <h2>マイページ</h2><hr>
-            <h3 class="sub-title"><?= h($current_user['name']) ?>さん</h3>
             <div class="user-details">
                 <div class="user-info">
+                    <h3 class="sub-title"><?= h($current_user['name']) ?>さん</h3>
                     <a href="user-info.php">ユーザー情報確認・変更</a>
                 </div>
-                <div class="">
-                    <h4>予約中プラン</h4>
+                <div class="reserve-link">
+                    <h4>＜ 予約中プラン ＞</h4>
                     <ul>
-                        <li><a href=""></a></li>
+                        <li>
+                            <a href="" class="opacity">
+                                <img src="../images/5193391_m.jpg" alt="">
+                                <p>プランタイトル</p>
+                            </a>
+                        </li>
                     </ul>
-                    <a href="">予約履歴</a>
+                    <div class="">
+                        <a href="">予約履歴一覧</a>
+                    </div>
                 </div>
-                <div class="">
-                    <h4>お気に入り</h4>
+                <div class="favo-link">
+                    <h4>＜ お気に入り ＞</h4>
                     <ul>
-                        <li><a href=""></a></li>
+                        <li>
+                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                        </li>
                     </ul>
+                    <div class="">
+                        <a href="">一覧へ</a>
+                    </div>
                 </div>
             </div>
-            <div class="btn-area logout">
+            <div class="btn-area mypage-btn">
                 <a href="logout.php" class="btn">ログアウト</a>
+                <a href="../index.php" class="btn home-back-btn">HOMEに戻る</a>
             </div>
         </div>
         
