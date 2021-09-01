@@ -139,3 +139,36 @@ function findUserById($id)
     
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function UpdateUser($email, $password, $name, $tel, $address, $birthday, $sex)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    UPDATE
+        users
+    SET
+        email = :email, 
+        password = :password, 
+        name = :name, 
+        tel = :tel, 
+        address = :address, 
+        birthday = :birthday, 
+        sex = :sex
+    WHERE
+        id = :id
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':tel', $tel, PDO::PARAM_STR);
+    $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+    $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+    $stmt->bindParam(':sex', $sex, PDO::PARAM_INT);
+    
+    $pw_hash = password_hash($password, PASSWORD_DEFAULT);
+    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+
+    $stmt->execute();
+}

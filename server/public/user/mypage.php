@@ -10,7 +10,7 @@ if (empty($_SESSION['id'])) {
     exit;
 }
 
-$current_user = findUserById($_SESSION['id'])
+$current_user = findUserById($_SESSION['id']);
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ $current_user = findUserById($_SESSION['id'])
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME | F TRIP</title>
+    <title>マイページ | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,7 @@ $current_user = findUserById($_SESSION['id'])
             <div class="user-details">
                 <div class="user-info">
                     <h3 class="sub-title"><?= h($current_user['name']) ?>さん</h3>
-                    <a href="user-info.php">ユーザー情報確認・変更</a>
+                    <a href="user-info.php?id=<?= h($current_user['id']) ?>">ユーザー情報確認・変更</a>
                 </div>
                 <div class="reserve-link">
                     <h4>＜ 予約中プラン ＞</h4>

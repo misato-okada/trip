@@ -73,12 +73,12 @@ $dbh = connectDb();
 
         <div id="top-img">
             <div class="autoplay-slider">
-                <div class="slide"><a href=""><img src="images/beach.jpg" alt="photo1"></a></div>
-                <div class="slide"><a href=""><img src="images/kouyou.jpg" alt="photo2"></a></div>
-                <div class="slide"><a href=""><img src="images/cafe.jpg" alt="photo3"></a></div>
-                <div class="slide"><a href=""><img src="images/beach.jpg" alt="photo1"></a></div>
-                <div class="slide"><a href=""><img src="images/kouyou.jpg" alt="photo2"></a></div>
-                <div class="slide"><a href=""><img src="images/cafe.jpg" alt="photo3"></a></div>
+                <div class="slide"><img src="images/beach.jpg" alt="photo1"></div>
+                <div class="slide"><img src="images/kouyou.jpg" alt="photo2"></div>
+                <div class="slide"><img src="images/cafe.jpg" alt="photo3"></div>
+                <div class="slide"><img src="images/beach.jpg" alt="photo1"></div>
+                <div class="slide"><img src="images/kouyou.jpg" alt="photo2"></div>
+                <div class="slide"><img src="images/cafe.jpg" alt="photo3"></div>
             </div>
         </div>
 
