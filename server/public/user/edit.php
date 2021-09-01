@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $birthday = filter_input(INPUT_POST, 'birthday');
     $sex = filter_input(INPUT_POST, 'sex');
 
-    $errors = signupValidate($email, $password, $name, $tel, $address, $birthday, $sex);
+    $errors = signupValidate($email, $password, $name, $tel, $address, $birthday, $sex, $id);
 
     if (empty($errors)) {
-    UpdateUser($email, $password, $name, $tel, $address, $birthday, $sex);
+    updateUser($email, $password, $name, $tel, $address, $birthday, $sex, $id);
     
     header('Location: user-info.php');
     exit;
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ユーザー情報確認・変更 | F current_user</title>
+    <title>ユーザー情報確認・変更 | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

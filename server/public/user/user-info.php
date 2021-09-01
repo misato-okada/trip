@@ -19,7 +19,7 @@ $current_user = findUserById($_SESSION['id']);
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ユーザー情報確認・変更 | F current_user</title>
+    <title>ユーザー情報確認・変更 | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,11 +55,11 @@ $current_user = findUserById($_SESSION['id']);
                 <div>
                     <?php
                     if (isset($current_user['sex']) && $current_user['sex'] == "1") {
-                    echo '男';
+                        echo '男';
                     } elseif (isset($current_user['sex']) && $current_user['sex'] == "2") {
-                    echo '女';
+                        echo '女';
                     } else {
-                    echo 'その他'; 
+                        echo 'その他'; 
                     }
                     ?>
                 </div>
