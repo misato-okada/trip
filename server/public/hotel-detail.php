@@ -1,17 +1,12 @@
 <?php
-
-require_once __DIR__ . '/../common/functions.php';
-
-$dbh = connectDb(); 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME | F TRIP</title>
+    <title>ホテル・旅館TOP | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +14,6 @@ $dbh = connectDb();
     <link rel="icon" href="images/favicon.ico" type="image/favicon">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <div class="wrapper">
         <header>
@@ -48,9 +42,9 @@ $dbh = connectDb();
                 <label for="drawer-check" class="drawer-open"><span></span></label>
                 <nav>
                     <ul class="g-nav side">
-                        <li><span class="choosing">HOME</span></li>
+                        <li><a href="index.html">HOME</a></li>
                         <li class="partition"><a href="restaurant.php">レストラン</a></li>
-                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><span class="choosing">ホテル・旅館</span></li>
                         <li class="partition"><a href="article.php">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
                         <li><a href="user/login.php">マイページ</a></li>
@@ -61,9 +55,9 @@ $dbh = connectDb();
             </div>
                 <nav class="resp-none">
                     <ul class="g-nav side">
-                        <li><span class="choosing">HOME</span></li>
+                        <li><a href="index.html">HOME</a></li>
                         <li class="partition"><a href="restaurant.php">レストラン</a></li>
-                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><span class="choosing">ホテル・旅館</span></li>
                         <li class="partition"><a href="article.php">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
                     </ul>
@@ -71,56 +65,13 @@ $dbh = connectDb();
             </div>
         </header>
 
-        <div id="top-img">
-            <div class="autoplay-slider">
-                <div class="slide"><img src="images/beach.jpg" alt="photo1"></div>
-                <div class="slide"><img src="images/kouyou.jpg" alt="photo2"></div>
-                <div class="slide"><img src="images/cafe.jpg" alt="photo3"></div>
-                <div class="slide"><img src="images/beach.jpg" alt="photo1"></div>
-                <div class="slide"><img src="images/kouyou.jpg" alt="photo2"></div>
-                <div class="slide"><img src="images/cafe.jpg" alt="photo3"></div>
+        <div class="top-line">
+            <h2><?= h($restaurants('name')) ?></h2>
+            <div>
+                <img src="images/hotel-img.jpg" alt="ホテル写真">
             </div>
         </div>
 
-        <div id="contents">
-            <section id="new">
-                <h2>新着記事</h2>
-                <ul class="new-article">
-                    <li class="opacity"><a href=""><img src="images/mthuji.jpg" alt=""><br>絶景！富士山を見ながら食事ができるレストラン</a></li>
-                    <li class="opacity"><a href=""><img src="images/eitaro_food.jpg" alt=""><br>新鮮な卵と特製ダレの卵かけご飯食べ放題！</a></li>
-                    <li class="opacity"><a href=""><img src="images/onsen.jpg" alt=""><br>森林の中でリラックス。自然を感じる露天風呂</a></li>
-                </ul>
-                <div class="more">
-                    <a href="article.php">もっとみる</a>
-                </div>
-            </section>
-
-            <section id="purpose">
-                <h2>なにしたい？</h2>
-                <ul class="purpose-list">
-                    <li class="eat opacity"><a href="restaurant.php"><img src="images/eat.png" alt="食べたい"></a></li>
-                    <li class="play opacity"><a href=""><img src="images/play.png" alt="遊びたい"></a></li>
-                    <li class="buy opacity"><a href=""><img src="images/buy.png" alt="買いたい"></a></li>
-                    <li class="healing opacity"><a href=""><img src="images/healing.png" alt="癒やされたい"></a></li>
-                </ul>
-            </section>
-
-            <section id="area">
-                <h2>エリア一覧</h2>
-                <ul class="area-list">
-                    <li><a href="">北海道・東北</a></li>
-                    <li><a href="">関東</a></li>
-                    <li><a href="">北陸</a></li>
-                    <li><a href="">甲信越</a></li>
-                    <li><a href="">東海</a></li>
-                    <li><a href="">近畿</a></li>
-                    <li><a href="">中国地方</a></li>
-                    <li><a href="">四国</a></li>
-                    <li><a href="">九州・沖縄</a></li>
-                </ul>
-            </section>
-        </div>
-        
         <footer>
             <ul id="footer-list" class="side">
                 <li><a href="restaurant.php">レストラン予約</a></li>
