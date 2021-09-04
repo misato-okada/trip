@@ -172,3 +172,138 @@ function updateUser($email, $password, $name, $tel, $address, $birthday, $sex, $
 
     $stmt->execute();
 }
+
+function findRestaurant()
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurants
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function findRestaurantById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurants
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function findHotel()
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        hotels
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function findHotelById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        hotels
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function findRestaurantplans($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurant_plans
+    WHERE
+        restaurant_id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function findHotelplans($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        hotel_plans
+    WHERE
+        hotel_id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// function findPrefecture($id)
+// {
+//     $dbh = connectDb();
+    
+//     $sql = <<<EOM
+//     SELECT
+//         *
+//     FROM
+//         prefectures
+//     WHERE
+//         prefecture_id = :id;
+//     EOM;
+
+//     $stmt = $dbh->prepare($sql);
+//     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+//     $stmt->execute();
+
+//     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+// }
+

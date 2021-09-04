@@ -66,13 +66,13 @@ $current_user = findUserById($_SESSION['id']);
                     <h4>＜ お気に入り ＞</h4>
                     <ul>
                         <li>
-                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
                         </li>
                         <li>
-                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
                         </li>
                         <li>
-                            <a href="" class="opacity"><img src="../images/4242162_s.jpg" alt=""></a>
+                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
                         </li>
                     </ul>
                     <div class="">
