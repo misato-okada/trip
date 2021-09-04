@@ -210,6 +210,46 @@ function findRestaurantById($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function findRestaurantplansByRestaurantid($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurant_plans
+    WHERE
+        restaurant_id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function findRestaurantplansById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurant_plans
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function findHotel()
 {
     $dbh = connectDb();
@@ -245,26 +285,6 @@ function findHotelById($id)
     $stmt->execute();
     
     return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-function findRestaurantplans($id)
-{
-    $dbh = connectDb();
-    
-    $sql = <<<EOM
-    SELECT
-        *
-    FROM
-        restaurant_plans
-    WHERE
-        restaurant_id = :id;
-    EOM;
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function findHotelplans($id)

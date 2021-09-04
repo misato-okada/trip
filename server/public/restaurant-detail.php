@@ -5,7 +5,7 @@ $dbh = connectDb();
 
 $id = filter_input(INPUT_GET, 'id');
 $restaurant = findRestaurantById($id);
-$restaurant_plans = findRestaurantplans($id);
+$restaurant_plans = findRestaurantplansByRestaurantid($id);
 
 ?>
 <!DOCTYPE html>
