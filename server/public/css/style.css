@@ -117,9 +117,6 @@ header {
     background-color: #2e3740;
     position: absolute;
 }
-.top-line div {
-    text-align: center;
-}
 .top-line img {
     width: 100%;
 }
@@ -263,6 +260,7 @@ input:focus {
     padding: 10px;
     border-radius: 25px;
     font-size: 1.2rem;
+    text-align: center;
 }
 .btn:hover {
     opacity: 0.6;
@@ -324,7 +322,7 @@ input:focus {
 /* 一覧ページリスト
 ------------------------------- */
 #list-contents {
-    width: 900px;
+    width: 80%;
     margin: 0 auto;
 }
 #list-contents h3 {
@@ -344,7 +342,7 @@ input:focus {
 }
 .detail {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-around;
 }
 .list-img img {
     width: 300px;
@@ -390,6 +388,147 @@ input:focus {
     margin-bottom: 50px;
     font-size: 1.2rem;
 }
+
+/* 詳細ページ
+------------------------------- */
+.detail-contents {
+    width: 90%;
+    margin: 0 auto;
+}
+.detail-wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+/* 画像 */
+input[type="radio"] {
+    display: none;
+}
+.main-photo {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.main-photo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+}
+.thumbnail {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.thumbnail-photo {
+    cursor: pointer;
+}
+/*ページを開いたとき＆一つ目のサムネイルをクリックしたとき*/
+#img1:checked ~ .thumbnail label[for="img1"] img {
+    opacity: 50%;
+    cursor: auto;
+}
+#img1:checked ~ .main-photo img:nth-child(1) {
+    opacity: 100%;
+}
+#img1:checked ~ .main-photo img:nth-child(2) {
+    opacity: 0;
+}
+#img1:checked ~ .main-photo img:nth-child(3) {
+    opacity: 0;
+}
+/*二つ目のサムネイルをクリックしたとき*/
+#img2:checked ~ .thumbnail label[for="img2"] img {
+    opacity: 50%;
+    cursor: auto;
+}
+#img2:checked ~ .main-photo img:nth-child(1) {
+    opacity: 0;
+}
+#img2:checked ~ .main-photo img:nth-child(2) {
+    opacity: 100%;
+}
+#img2:checked ~ .main-photo img:nth-child(3) {
+    opacity: 0;
+}
+/*三つ目のサムネイルをクリックしたとき*/
+#img3:checked ~ .thumbnail label[for="img3"] img {
+    opacity: 50%;
+    cursor: auto;
+}
+#img3:checked ~ .main-photo img:nth-child(1) {
+    opacity: 0;
+}
+#img3:checked ~ .main-photo img:nth-child(2) {
+    opacity: 0;
+}
+#img3:checked ~ .main-photo img:nth-child(3) {
+    opacity: 100%;
+}
+/* 画像下 */
+.detail-photo p {
+    margin: 10px 0;
+}
+.detail-table {
+    text-align: left;
+}
+.detail-table h4 {
+    font-size: 1.5rem;
+}
+.detail-section {
+    margin-top: 50px;
+}
+/* プラン */
+.name h5 {
+    font-size: 1.2rem;
+}
+.detail-plan-img {
+    width: 200px;
+    flex-shrink: 0;
+}
+.plan .detail {
+    width: 95%;
+    margin: 0 auto;
+}
+.plan .detail br {
+    height: 0;
+}
+.reserve-btn {
+    display: block;
+    margin: 30px 0 10px;
+    width: 50%;
+    background-color: #a4e3dc;
+    padding: 5px;
+    border-radius: 20px;
+    text-align: center;
+}
+.reserve-btn:hover {
+    text-decoration: none;
+    color: #2e3740;
+    opacity: 0.6;
+}
+/* 詳細表 */
+table {
+    margin: 10px auto;
+    font-size: 1.2rem;
+    width: 95%;
+    border-collapse: collapse;
+}
+tr {
+    line-height: 2.5;
+}
+th {
+    background-color: #f4f7e2;
+}
+th,td {
+    padding: 10px 30px;
+    text-align: left;
+    border: solid 1px #2e3740;
+}
+
 
 
 /* footer
@@ -457,6 +596,7 @@ footer {
     width: 200px;
     }
     .list-text {
+        width: 50%;
         margin-left: 20px;
         font-size: 0.9rem;
     }

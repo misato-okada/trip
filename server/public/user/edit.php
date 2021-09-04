@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ユーザー情報確認・変更 | F TRIP</title>
+    <title>ユーザー情報変更 | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
     <div class="user-contents">
-        <h2>ユーザー情報確認・変更</h2><hr>
+        <h2>ユーザー情報変更</h2><hr>
         <div class="form-area">
             <?php if ($errors): ?>
                 <ul class="errors">

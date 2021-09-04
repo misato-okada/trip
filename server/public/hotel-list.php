@@ -1,4 +1,10 @@
 <?php
+require_once __DIR__ . '/../common/functions.php';
+
+$dbh = connectDb();
+
+$hotels = findHotel();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -75,101 +81,33 @@
         <div id="list-contents">
             <h3>ホテル・旅館一覧</h3><hr>
             <div class="hotel-list">
-                <div class="info">
-                    <div class="name">
-                        <h4><a href="">ホテルオーシャンリゾート</a></h4>
-                    </div>
-                    <div class="detail">
-                        <div class="list-img opacity">
-                            <a href=""><img src="images/4242162_s.jpg" alt=""></a>
+                <?php foreach ($hotels as $hotel): ?>
+                    <div class="info">
+                        <div class="name">
+                            <h4>
+                                <a href="hotel-detail.php?id=<?= h($hotel['id']) ?>">
+                                    <?= h($hotel['name']) ?>
+                                </a>
+                            </h4>
                         </div>
-                        <div class="list-text">
-                            <div>沖縄県</div>
-                            <div>リゾートホテル</div>
-                            <div>10000円〜/人</div>
-                            <p>ホテルのすぐ隣が海！部屋からは絶景オーシャンビュー！<br>
-                            那覇空港から車で10分のリゾートホテル<br>
-                            朝は地元の新鮮な食材を使ったモーニングビュッフェが人気♪
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="name">
-                        <h4><a href="">ホテルオーシャンリゾート</a></h4>
-                    </div>
-                    <div class="detail">
-                        <div class="list-img opacity">
-                            <a href=""><img src="images/4242162_s.jpg" alt=""></a>
-                        </div>
-                        <div class="list-text">
-                            <div>沖縄県</div>
-                            <div>リゾートホテル</div>
-                            <div>10000円〜/人</div>
-                            <p>ホテルのすぐ隣が海！部屋からは絶景オーシャンビュー！<br>
-                            那覇空港から車で10分のリゾートホテル<br>
-                            朝は地元の新鮮な食材を使ったモーニングビュッフェが人気♪
-                            </p>
+                        <div class="detail">
+                            <div class="list-img opacity">
+                                <a href="hotel-detail.php?id=<?= h($hotel['id']) ?>">
+                                    <img src="<?= h($hotel['img1']) ?>" alt="レストラン写真">
+                                </a>
+                            </div>
+                            <div class="list-text">
+                                <div>◯◯県</div>
+                                <div><?= h($hotel['minimum_amount']) ?>円(税込)〜 /人</div>
+                                <br>
+                                <p>
+                                    <?= h($hotel['contents']) ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="info">
-                    <div class="name">
-                        <h4><a href="">ホテルオーシャンリゾート</a></h4>
-                    </div>
-                    <div class="detail">
-                        <div class="list-img opacity">
-                            <a href=""><img src="images/4242162_s.jpg" alt=""></a>
-                        </div>
-                        <div class="list-text">
-                            <div>沖縄県</div>
-                            <div>リゾートホテル</div>
-                            <div>10000円〜/人</div>
-                            <p>ホテルのすぐ隣が海！部屋からは絶景オーシャンビュー！<br>
-                            那覇空港から車で10分のリゾートホテル<br>
-                            朝は地元の新鮮な食材を使ったモーニングビュッフェが人気♪
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="name">
-                        <h4><a href="">ホテルオーシャンリゾート</a></h4>
-                    </div>
-                    <div class="detail">
-                        <div class="list-img opacity">
-                            <a href=""><img src="images/4242162_s.jpg" alt=""></a>
-                        </div>
-                        <div class="list-text">
-                            <div>沖縄県</div>
-                            <div>リゾートホテル</div>
-                            <div>10000円〜/人</div>
-                            <p>ホテルのすぐ隣が海！部屋からは絶景オーシャンビュー！<br>
-                            那覇空港から車で10分のリゾートホテル<br>
-                            朝は地元の新鮮な食材を使ったモーニングビュッフェが人気♪
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="name">
-                        <h4><a href="">ホテルオーシャンリゾート</a></h4>
-                    </div>
-                    <div class="detail">
-                        <div class="list-img opacity">
-                            <a href=""><img src="images/4242162_s.jpg" alt=""></a>
-                        </div>
-                        <div class="list-text">
-                            <div>沖縄県</div>
-                            <div>リゾートホテル</div>
-                            <div>10000円〜/人</div>
-                            <p>ホテルのすぐ隣が海！部屋からは絶景オーシャンビュー！<br>
-                            那覇空港から車で10分のリゾートホテル<br>
-                            朝は地元の新鮮な食材を使ったモーニングビュッフェが人気♪
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+                
                 <div class="page-link">
                     <p>1 〜 5件</p>
                     <div class="nav-links">
