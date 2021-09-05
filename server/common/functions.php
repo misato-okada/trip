@@ -59,12 +59,16 @@ function signupValidate($email, $password, $name, $tel, $address, $birthday, $se
     return $errors;
 }
 
-function reserveValidate($reserve_day, $peple, $email, $name, $tel, $address, $age, $sex)
+function reserveValidate($reserve_day, $reserve_time, $peple, $email, $name, $tel, $address, $age, $sex)
 {
     $errors = [];
 
     if (empty($reserve_day)) {
         $errors[] = MSG_DATE_REQUIRED;
+    }
+
+    if (empty($reserve_time)) {
+        $errors[] = MSG_TIME_REQUIRED;
     }
 
     if (empty($peple)) {
@@ -125,28 +129,29 @@ function insertUser($email, $password, $name, $tel, $address, $birthday, $sex)
     $stmt->execute();
 }
 
-// function insertReserve($reserve_day, $people)
-// {
-//     $dbh = connectDb();
+function insertReserveRestaurant($user_id, $plan_id, $reserve_day, $reserve_time, $people, $price, $total_amount)
+{
+    $dbh = connectDb();
 
-//     $sql = <<<EOM
-//     INSERT INTO
-//         users
-//         (email, name, tel, address, birthday, sex)
-//     VALUES
-//         (:email, :name, :tel, :address, :birthday, :sex);
-//     EOM;
+    $sql = <<<EOM
+    INSERT INTO
+        restaurant_reservations
+        (user_id, plan_id, reserve_day, reserve_time, people, price, total_amount)
+    VALUES
+        (:user_id, :plan_id, :reserve_day, :reserve_time, :people, :price, :total_amount);
+    EOM;
 
-//     $stmt = $dbh->prepare($sql);
-//     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-//     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-//     $stmt->bindParam(':tel', $tel, PDO::PARAM_STR);
-//     $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-//     $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
-//     $stmt->bindParam(':sex', $sex, PDO::PARAM_INT);
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':plan_id', $plan_id, PDO::PARAM_INT);
+    $stmt->bindParam(':reserve_day', $reserve_day, PDO::PARAM_STR);
+    $stmt->bindParam(':reserve_time', $reserve_time, PDO::PARAM_STR);
+    $stmt->bindParam(':people', $people, PDO::PARAM_INT);
+    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+    $stmt->bindParam(':total_amount', $total_amount, PDO::PARAM_INT);
 
-//     $stmt->execute();
-// }
+    $stmt->execute();
+}
 
 function loginValidate($email, $password)
 {
@@ -368,6 +373,65 @@ function findHotelplans($id)
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function findHotelplansById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        hotel_plans
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function findRestaurantreservationsById($id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurant_reservations
+    WHERE
+        user_id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function findRestaurantplanById($restaurant_plan_id)
+{
+    $dbh = connectDb();
+    
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        restaurant_plans
+    WHERE
+        id = :restaurant_plan_id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':restaurant_plan_id', $restaurant_plan_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 // function checkInput($var){

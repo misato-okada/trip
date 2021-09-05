@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . '/../../common/functions.php';
+
+session_start();
+// ログイン判定
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

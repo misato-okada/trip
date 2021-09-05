@@ -124,7 +124,7 @@ $restaurant_plans = findRestaurantplansByRestaurantid($id);
                                             </a>
                                         </div>
                                         <div class="list-text">
-                                            <div><?= h($restaurant_plan['price']) ?></div>
+                                            <div><?= h($restaurant_plan['price']) ?>円 /人</div>
                                             <p><?= h($restaurant_plan['contents']) ?></p>
                                             <a href="restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="reserve-btn">詳細・予約はこちら</a>
                                         </div>

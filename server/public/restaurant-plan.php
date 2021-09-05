@@ -6,6 +6,7 @@ $dbh = connectDb();
 $id = filter_input(INPUT_GET, 'id');
 $restaurant = findRestaurantById($id);
 $restaurant_plan = findRestaurantplansById($id);
+var_dump($restaurant_plan);
 
 ?>
 <!DOCTYPE html>
@@ -111,7 +112,7 @@ $restaurant_plan = findRestaurantplansById($id);
                     </div>
                     <div>
                         <a href="restaurant-reserve.php?id=<?= h($restaurant_plan['id']) ?>" class="btn">予約する</a>
-                        <a href="restaurant-detail.php?id=<?= h($restaurant['id']) ?>" class="btn home-back-btn">戻る</a>
+                        <a href="restaurant-detail.php?id=<?= h($restaurant_plan['restaurant_id']) ?>" class="btn home-back-btn">戻る</a>
                     </div>
                 </div>
             </div>

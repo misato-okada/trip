@@ -5,11 +5,31 @@ require_once __DIR__ . '/../common/functions.php';
 session_start();
 // ログイン判定
 if (empty($_SESSION['id'])) {
-    header('Location: login.php');
+    header('Location: user/login.php');
     exit;
 }
 
-// $date = isset( $_POST[ 'date' ] ) ? $_POST[ 'date' ] : NULL;
+$id = filter_input(INPUT_POST, 'id');
+$current_user = findUserById($_SESSION['id']);
+$restaurant_plan = findRestaurantplansById($_SESSION['id']);
+
+$name = '';
+$email = '';
+$tel = '';
+$address = '';
+$age = '';
+$sex = '';
+$remark = '';
+
+$user_id = '';
+$plan_id = '';
+$reserve_day = '';
+$reserve_time = '';
+$people = '';
+$total_amount = '';
+
+// $reserve_day = isset( $_POST[ 'reserve_day' ] ) ? $_POST[ 'reserve_day' ] : NULL;
+// $reserve_time = isset( $_POST[ 'reserve_time' ] ) ? $_POST[ 'reserve_time' ] : NULL;
 // $people = isset( $_POST[ 'people' ] ) ? $_POST[ 'people' ] : NULL;
 // $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;
 // $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
@@ -19,16 +39,23 @@ if (empty($_SESSION['id'])) {
 // $sex = isset( $_POST[ 'sex' ] ) ? $_POST[ 'sex' ] : NULL;
 // $remarks = isset( $_POST[ 'remarks' ] ) ? $_POST[ 'remarks' ] : NULL;
 
-// $errors = [];
+$errors = [];
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $email = filter_input(INPUT_POST, 'email');
-//     $name = filter_input(INPUT_POST, 'name');
-//     $tel = filter_input(INPUT_POST, 'tel');
-//     $address = filter_input(INPUT_POST, 'address');
-//     $age = filter_input(INPUT_POST, 'birthday');
-//     $sex = filter_input(INPUT_POST, 'sex');
-//     $remarks = filter_input(INPUT_POST, 'remarks');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_input(INPUT_POST, 'email');
+    $name = filter_input(INPUT_POST, 'name');
+    $tel = filter_input(INPUT_POST, 'tel');
+    $address = filter_input(INPUT_POST, 'address');
+    $age = filter_input(INPUT_POST, 'age');
+    $sex = filter_input(INPUT_POST, 'sex');
+
+    $user_id = $current_user['id'];
+    $plan_id = $restaurant_plan['id'];
+    $reserve_day = filter_input(INPUT_POST, 'reserve_day');
+    $reserve_time = filter_input(INPUT_POST, 'reserve_time');
+    $people = filter_input(INPUT_POST, 'people');
+    $price = $restaurant_plan['price'];
+    $total_amount = $restaurant_plan['price'] * $people;
 
 //     $mail_body = 'フォームからのご予約問い合わせ' . "\n\n";
 //     $mail_body .=  "お名前： " .h($name) . "\n";
@@ -39,21 +66,19 @@ if (empty($_SESSION['id'])) {
 //     $mail_body .=  "性別： " . h($sex) . "\n\n" ;
 //     $mail_body .=  "＜予約内容＞" . "\n" ;
 //     $mail_body .=  "ご予約プラン" . h($restaurant_plan['title']). "\n" ;
-//     $mail_body .=  "ご予約日時： " . h($date) . "\n" ;
+//     $mail_body .=  "ご予約日時： " . h($reserve_day) . "\n" ;
+//     $mail_body .=  "ご予約日時： " . h($reserve_time) . "\n" ;
 //     $mail_body .=  "備考： " . h($remarks) . "\n\n" ;
 
-//     $errors = reserveValidate($date, $people, $email, $name, $tel, $address, $age, $sex);
+    $errors = reserveValidate($reserve_day, $reserve_time, $people, $email, $name, $tel, $address, $age, $sex);
 
-//     if (empty($errors)) {
-//         insertReserve($reserve_day, $people, $plan_id, $user_id, $total_amount);
+    if (empty($errors)) {
+        insertReserveRestaurant($user_id, $plan_id, $reserve_day, $reserve_time, $people, $price, $total_amount);
     
-//     header('Location: index.php');
-//     exit;
-//     }
-// }
-
-$current_user = findUserById($_SESSION['id']);
-$restaurant_plan = findRestaurantplansById($_SESSION['id']);
+    header('Location: user/send-mail.php');
+    exit;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -67,8 +92,8 @@ $restaurant_plan = findRestaurantplansById($_SESSION['id']);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
-    <link rel="icon" href="../images/favicon.ico" type="image/favicon">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/favicon">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
@@ -93,8 +118,10 @@ $restaurant_plan = findRestaurantplansById($_SESSION['id']);
             <form action="" method="post">
                 <label for="plan">予約プラン</label>
                 <div id="plan"><?= h($restaurant_plan['title']) ?></div>
-                <label for="reserve_day">予約日時</label>
-                <input type="datetime-local" name="reserve_day" id="reserve_day" placeholder="reserve_day" value="<?= h($reserve_day) ?>">
+                <label for="reserve_day">予約日</label>
+                <input type="date" name="reserve_day" id="reserve_day" placeholder="reserve_day" value="<?= h($reserve_day) ?>">
+                <label for="reserve_time">予約時間</label>
+                <input type="time" name="reserve_time" id="reserve_time" placeholder="reserve_time" value="<?= h($reserve_time) ?>">
                 <label for="people">予約人数</label>
                 <input type="number" name="people" id="people" placeholder="Number of people" value="<?= h($people) ?>">
                 <label for="email">代表者メールアドレス</label>
@@ -117,11 +144,14 @@ $restaurant_plan = findRestaurantplansById($_SESSION['id']);
                 <label for="remarks">備考</label>
                 <textarea rows="5" cols="80" name="remarks" id="remarks" placeholder="ご要望などここに記入してください" value="<?= h($remark) ?>"></textarea>
                 <div class="btn-area">
-                    <!-- <input name="submitted" type="submit" value="送信する" class="btn"> -->
-                    <a href="user/send_mail.php" class="btn">送信する</a>
-                    <a href="restaurant_plan.php?=id<?= h($restaurant_plan['id']) ?>" class="btn home-back-btn">戻る</a>
+                    <input name="submitted" type="submit" value="送信する" class="btn">
+                    <a href="restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="btn home-back-btn">戻る</a>
                 </div>
             </form>
+            <!-- <div class="btn-area">
+                    <a href="user/send-mail.php" class="btn">送信する</a>
+                    <a href="restaurant-plan.php" class="btn home-back-btn">戻る</a>
+            </div> -->
         </div>
     </div>
     <footer>
@@ -139,5 +169,5 @@ $restaurant_plan = findRestaurantplansById($_SESSION['id']);
                 </div>
                 <p><small>&copy; 2021 F trip All Rights Reserved.</small></p>
             </div>
-        </footer>
+    </footer>
 </body>
