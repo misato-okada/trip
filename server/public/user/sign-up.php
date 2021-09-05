@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="tel" name="tel" id="tel" placeholder="Tel" value="<?= h($tel) ?>">
                 <label for="address">住所</label>
                 <input type="text" name="address" id="address" placeholder="Address" value="<?= h($address) ?>">
-                <label for="password">生年月日</label>
+                <label for="birthday">生年月日</label>
                 <input type="date" name="birthday" id="birthday" value="<?= h($birthday) ?>">
                 <label for="sex">性別</label>
                 <input type="radio" name="sex" id="sex" value="1"

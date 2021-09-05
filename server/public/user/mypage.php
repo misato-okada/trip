@@ -10,7 +10,10 @@ if (empty($_SESSION['id'])) {
     exit;
 }
 
+$id = filter_input(INPUT_GET, 'id');
 $current_user = findUserById($_SESSION['id']);
+$restaurant_plan_id = findRestaurantreservationsById($_SESSION['id']);
+$restaurant_plan = findRestaurantplanById($restaurant_plan_id);
 
 ?>
 <!DOCTYPE html>
@@ -51,12 +54,12 @@ $current_user = findUserById($_SESSION['id']);
                 <div class="reserve-link">
                     <h4>＜ 予約中プラン ＞</h4>
                     <ul>
-                        <li>
-                            <a href="" class="opacity">
-                                <img src="../images/5193391_m.jpg" alt="">
-                                <p>プランタイトル</p>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="../restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="opacity">
+                                    <img src="../<?= h($restaurant_plan['image'])?>" alt="プラン写真">
+                                    <p><?= h($restaurant_plan['title']) ?></p>
+                                </a>
+                            </li>
                     </ul>
                     <div class="">
                         <a href="">予約履歴一覧</a>

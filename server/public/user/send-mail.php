@@ -1,38 +1,13 @@
 <?php
-
 require_once __DIR__ . '/../../common/functions.php';
 
 session_start();
-
 // ログイン判定
-if (!empty($_SESSION['id'])) {
-    header('Location: mypage.php');
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
     exit;
 }
 
-
-$email = '';
-$password = '';
-$errors = [];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_input(INPUT_POST, 'email');
-    $password = filter_input(INPUT_POST, 'password');
-
-    $errors = loginValidate($email, $password);
-
-    if (empty($errors)) {
-        $user = findUserByEmail($email);
-        // ログイン処理
-        if (password_verify($password, $user['password'])) {
-        $_SESSION['id'] = $user['id'];
-        header('Location: ../index.php');
-        exit;
-        } else {
-            $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;
-        }
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -40,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset3="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン | F TRIP</title>
+    <title>予約フォーム | F TRIP</title>
     <link rel="stylesheet" href="https://unpkg.com/ress@3.0.0/dist/ress.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="../images/favicon.ico" type="image/favicon">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<body>
 <body>
     <header>
         <div class="side">
@@ -59,25 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
     <div class="user-contents">
-        <h2>ログイン</h2><hr>
+        <h2>予約フォーム</h2><hr>
         <div class="form-area">
-            <?php if ($errors): ?>
-                <ul class="errors">
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= h($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-            <form action="" method="post">
-                <label for="email">メールアドレス</label>
-                <input type="email" name="email" id="email" placeholder="Email" value="<?= h($email) ?>">
-                <label for="password">パスワード</label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <h4>予約内容送信</h4>
+                <p>予約内容を送信しました。</p>
+                <p>※まだ予約は確定していません。予約確定後、代表者メールアドレスに予約確定メールをお送りします。</p>
                 <div class="btn-area">
-                    <input type="submit" value="ログイン" class="btn">
-                    <a href="sign-up.php" class="sub-link">初めての方はこちら</a>
+                    <a href="../index.php" class="btn home-back-btn">HOMEに戻る</a>
                 </div>
-            </form>
         </div>
     </div>
     <footer>
@@ -97,3 +62,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </footer>
 </body>
+<!-- <div class="container">
+    <?php  //if ( isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
+        <h3>予約内容送信</h4>
+        <p>予約内容を送信しました。</p>
+        <p>※まだ予約は確定していません。予約確定後、代表者メールアドレスに予約確定メールをお送りします。</p>
+        <hr>
+        <?php //elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
+        <h3>送信失敗</h4>
+        <p>申し訳ございませんが、送信に失敗しました。</p>
+        <p>しばらくしてもう一度お試しになるか、お電話にてご連絡ください。</p>
+        <p>メール：<a href="mailto:info@example.com">Contact</a></p>
+        <hr>
+    <?php //endif; ?>
+</div> -->
+</html>
