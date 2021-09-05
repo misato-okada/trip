@@ -5,7 +5,7 @@ $dbh = connectDb();
 
 $id = filter_input(INPUT_GET, 'id');
 $restaurant = findRestaurantById($id);
-$restaurant_plans = findRestaurantplansById($id);
+$restaurant_plan = findRestaurantplansById($id);
 
 ?>
 <!DOCTYPE html>
@@ -85,39 +85,33 @@ $restaurant_plans = findRestaurantplansById($id);
                     </div>
                     <div class="detail-table">
                         <div class="detail-section">
-                            <h4>店舗詳細</h4>
+                            <h4>プラン詳細</h4>
                             <table>
                             <tbody>
                                 <tr>
-                                    <th>店舗名</th>
-                                    <td><?= h($restaurant['name']) ?></td>
+                                    <th>プラン名</th>
+                                    <td><?= h($restaurant_plan['title']) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>住所</th>
-                                    <td><?= h($restaurant['address']) ?></td>
+                                    <th>金額</th>
+                                    <td><?= h($restaurant_plan['price']) ?>円 /人</td>
                                 </tr>
                                 <tr>
-                                    <th>ジャンル</th>
-                                    <td></td>
+                                    <th>メニュー</th>
+                                    <td>・サラダ<br>・フライドポテト<br>・唐揚げ<br>・パスタ<br>・オムライス<br>・ケーキ etc.
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th>営業時間</th>
-                                    <td><?= h($restaurant['opening_time']) ?>〜<?= h($restaurant['closing_time']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>定休日</th>
-                                    <td><?= h($restaurant['closing_day']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th>電話番号</th>
-                                    <td><?= h($restaurant['tel']) ?></td>
+                                    <th>注意事項</th>
+                                    <td>1ヶ月前までにご予約が必要です。<br>10名以下でのご予約はできません。</td>
                                 </tr>
                             </tbody>
                             </table>
                         </div>
                     </div>
                     <div>
-                        <a href="restaurant-list.php#list-contents" class="btn home-back-btn">一覧に戻る</a>
+                        <a href="restaurant-reserve.php?id=<?= h($restaurant_plan['id']) ?>" class="btn">予約する</a>
+                        <a href="restaurant-detail.php?id=<?= h($restaurant['id']) ?>" class="btn home-back-btn">戻る</a>
                     </div>
                 </div>
             </div>

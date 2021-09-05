@@ -59,6 +59,46 @@ function signupValidate($email, $password, $name, $tel, $address, $birthday, $se
     return $errors;
 }
 
+function reserveValidate($reserve_day, $peple, $email, $name, $tel, $address, $age, $sex)
+{
+    $errors = [];
+
+    if (empty($reserve_day)) {
+        $errors[] = MSG_DATE_REQUIRED;
+    }
+
+    if (empty($peple)) {
+        $errors[] = MSG_PEPLE_REQUIRED;
+    }
+
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+
+    if (empty($name)) {
+        $errors[] = MSG_NAME_REQUIRED;
+    }
+
+    if (empty($tel)) {
+        $errors[] = MSG_TEL_REQUIRED;
+    }
+
+    if (empty($address)) {
+        $errors[] = MSG_ADDRESS_REQUIRED;
+    }
+
+    if (empty($age)) {
+        $errors[] = MSG_AGE_REQUIRED;
+    }
+
+    if (empty($sex)) {
+        $errors[] = MSG_SEX_REQUIRED;
+    }
+
+    return $errors;
+}
+
+
 function insertUser($email, $password, $name, $tel, $address, $birthday, $sex)
 {
     $dbh = connectDb();
@@ -84,6 +124,29 @@ function insertUser($email, $password, $name, $tel, $address, $birthday, $sex)
 
     $stmt->execute();
 }
+
+// function insertReserve($reserve_day, $people)
+// {
+//     $dbh = connectDb();
+
+//     $sql = <<<EOM
+//     INSERT INTO
+//         users
+//         (email, name, tel, address, birthday, sex)
+//     VALUES
+//         (:email, :name, :tel, :address, :birthday, :sex);
+//     EOM;
+
+//     $stmt = $dbh->prepare($sql);
+//     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+//     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+//     $stmt->bindParam(':tel', $tel, PDO::PARAM_STR);
+//     $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+//     $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+//     $stmt->bindParam(':sex', $sex, PDO::PARAM_INT);
+
+//     $stmt->execute();
+// }
 
 function loginValidate($email, $password)
 {
@@ -307,23 +370,23 @@ function findHotelplans($id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// function findPrefecture($id)
-// {
-//     $dbh = connectDb();
-    
-//     $sql = <<<EOM
-//     SELECT
-//         *
-//     FROM
-//         prefectures
-//     WHERE
-//         prefecture_id = :id;
-//     EOM;
-
-//     $stmt = $dbh->prepare($sql);
-//     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//     $stmt->execute();
-
-//     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+// function checkInput($var){
+//     if(is_array($var)){
+//     return array_map('checkInput', $var);
+//     }else{
+//     //NULLバイト攻撃対策
+//     if(preg_match('/\0/', $var)){  
+//     die('不正な入力です。');
+//     }
+//     //文字エンコードのチェック
+//     if(!mb_check_encoding($var, 'UTF-8')){ 
+//     die('不正な入力です。');
+//     }
+//     //改行、タブ以外の制御文字のチェック
+//     if(preg_match('/\A[\r\n\t[:^cntrl:]]*\z/u', $var) === 0){  
+//     die('不正な入力です。制御文字は使用できません。');
+//     }
+//     return $var;
+// }
 // }
 
