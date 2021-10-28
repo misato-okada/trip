@@ -37,9 +37,10 @@ if (empty($_SESSION['id'])) {
     <div class="user-contents">
         <h2>予約フォーム</h2><hr>
         <div class="form-area">
-                <h4>予約内容送信</h4>
+                <!-- <h4>予約内容送信</h4> -->
                 <p>予約内容を送信しました。</p>
-                <p>※まだ予約は確定していません。予約確定後、代表者メールアドレスに予約確定メールをお送りします。</p>
+                <br>
+                <p>※まだ予約は確定していません。<br>予約確定後、代表者メールアドレスに予約確定メールをお送りします。</p>
                 <div class="btn-area">
                     <a href="../index.php" class="btn home-back-btn">HOMEに戻る</a>
                 </div>

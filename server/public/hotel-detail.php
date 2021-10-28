@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../common/functions.php';
 
+session_start();
+
 $dbh = connectDb();
 
 $id = filter_input(INPUT_GET, 'id');
@@ -31,42 +33,65 @@ $hotel_plans = findHotelplans($id);
                         <img src="images/logo_top.jpg" alt="サイトロゴ">
                     </a>
                 </h1>
-                <div class="mypage-favo">
-                    <div class="mypage">
-                        <a class="mypage-svg opacity" href="user/login.php">
-                            <img src="images/login.svg" alt="マイページ">
-                            <p>マイページ</p>
-                        </a>
+                <?php if (!empty($_SESSION['id'])) : ?>
+                    <div class="mypage-favo">
+                        <div class="mypage">
+                            <a class="mypage-svg opacity" href="user/login.php">
+                                <img src="images/login.svg" alt="マイページ">
+                                <p>マイページ</p>
+                            </a>
+                        </div>
+                        <div class="favo">
+                            <a class="favo-svg opacity" href="user/login.php">
+                                <img src="images/favo.svg" alt="お気に入り">
+                                <p>お気に入り</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="favo">
-                        <a class="favo-svg opacity" href="user/login.php">
-                            <img src="images/favo.svg" alt="お気に入り">
-                            <p>お気に入り</p>
-                        </a>
+                <?php else :?>
+                    <div class="mypage-favo">
+                        <div class="mypage">
+                            <a class="mypage-svg opacity" href="user/login.php">
+                                <img src="images/login_door.svg" alt="ログイン">
+                                <p>ログイン</p>
+                            </a>
+                        </div>
+                        <div class="favo">
+                            <a class="favo-svg opacity" href="user/sign-up.php">
+                                <img src="images/login.svg" alt="新規登録">
+                                <p>新規登録</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?> 
+
                 <div class="drawer resp-add">
                 <input type="checkbox" id="drawer-check" class="drawer-hidden">
                 <label for="drawer-check" class="drawer-open"><span></span></label>
                 <nav>
                     <ul class="g-nav side">
-                        <li><a href="index.html">HOME</a></li>
+                        <li><span class="choosing">HOME</span></li>
                         <li class="partition"><a href="restaurant.php">レストラン</a></li>
-                        <li class="partition"><span class="choosing">ホテル・旅館</span></li>
-                        <li class="partition"><a href="article.php">特集記事</a></li>
+                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><a href="">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
-                        <li><a href="user/login.php">マイページ</a></li>
-                        <li><a href="user/login.php">お気に入り</a></li>
+                        <?php if (!empty($_SESSION['id'])) : ?>
+                            <li><a href="user/login.php">マイページ</a></li>
+                            <li><a href="user/login.php">お気に入り</a></li>
+                        <?php else :?>
+                            <li><a href="user/login.php">ログイン</a></li>
+                            <li><a href="user/sign-up.php">新規登録</a></li>
+                        <?php endif; ?> 
                     </ul>
                 </nav>
             </div>
             </div>
                 <nav class="resp-none">
                     <ul class="g-nav side">
-                        <li><a href="index.html">HOME</a></li>
+                        <li><span class="choosing">HOME</span></li>
                         <li class="partition"><a href="restaurant.php">レストラン</a></li>
-                        <li class="partition"><span class="choosing">ホテル・旅館</span></li>
-                        <li class="partition"><a href="article.php">特集記事</a></li>
+                        <li class="partition"><a href="hotel.php">ホテル・旅館</a></li>
+                        <li class="partition"><a href="">特集記事</a></li>
                         <li class="partition"><a href="">さがす</a></li>
                     </ul>
                 </nav>
@@ -124,7 +149,7 @@ $hotel_plans = findHotelplans($id);
                                             </a>
                                         </div>
                                         <div class="list-text">
-                                            <div><?= h($hotel_plan['price']) ?></div>
+                                            <div><?= h($hotel_plan['price']) ?>円 /人</div>
                                             <p><?= h($hotel_plan['contents']) ?></p>
                                             <a href="hotel-plan.php?id=<?= h($hotel_plan['id']) ?>" class="reserve-btn">詳細・予約はこちら</a>
                                         </div>

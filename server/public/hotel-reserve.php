@@ -9,26 +9,42 @@ if (empty($_SESSION['id'])) {
     exit;
 }
 
-// $date = isset( $_POST[ 'date' ] ) ? $_POST[ 'date' ] : NULL;
-// $people = isset( $_POST[ 'people' ] ) ? $_POST[ 'people' ] : NULL;
-// $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;
-// $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
-// $tel = isset( $_POST[ 'tel' ] ) ? $_POST[ 'tel' ] : NULL;
-// $address = isset( $_POST[ 'address' ] ) ? $_POST[ 'address' ] : NULL;
-// $age = isset( $_POST[ 'age' ] ) ? $_POST[ 'age' ] : NULL;
-// $sex = isset( $_POST[ 'sex' ] ) ? $_POST[ 'sex' ] : NULL;
-// $remarks = isset( $_POST[ 'remarks' ] ) ? $_POST[ 'remarks' ] : NULL;
+$id = filter_input(INPUT_GET, 'id');
+$current_user = findUserById($_SESSION['id']);
+$hotel_plan = findHotelplansById($_SESSION['id']);
 
-// $errors = [];
+$name = '';
+$email = '';
+$tel = '';
+$address = '';
+$age = '';
+$sex = '';
+$remark = '';
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $email = filter_input(INPUT_POST, 'email');
-//     $name = filter_input(INPUT_POST, 'name');
-//     $tel = filter_input(INPUT_POST, 'tel');
-//     $address = filter_input(INPUT_POST, 'address');
-//     $age = filter_input(INPUT_POST, 'birthday');
-//     $sex = filter_input(INPUT_POST, 'sex');
-//     $remarks = filter_input(INPUT_POST, 'remarks');
+$user_id = '';
+$plan_id = '';
+$first_day = '';
+$last_day = '';
+$people = '';
+$total_amount = '';
+
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_input(INPUT_POST, 'email');
+    $name = filter_input(INPUT_POST, 'name');
+    $tel = filter_input(INPUT_POST, 'tel');
+    $address = filter_input(INPUT_POST, 'address');
+    $age = filter_input(INPUT_POST, 'age');
+    $sex = filter_input(INPUT_POST, 'sex');
+
+    $user_id = $current_user['id'];
+    $plan_id = $hotel_plan['id'];
+    $first_day = filter_input(INPUT_POST, 'first_day');
+    $last_day = filter_input(INPUT_POST, 'last_day');
+    $people = filter_input(INPUT_POST, 'people');
+    $price = $hotel_plan['price'];
+    $total_amount = $hotel_plan['price'] * $people;
 
 //     $mail_body = 'フォームからのご予約問い合わせ' . "\n\n";
 //     $mail_body .=  "お名前： " .h($name) . "\n";
@@ -39,22 +55,19 @@ if (empty($_SESSION['id'])) {
 //     $mail_body .=  "性別： " . h($sex) . "\n\n" ;
 //     $mail_body .=  "＜予約内容＞" . "\n" ;
 //     $mail_body .=  "ご予約プラン" . h($restaurant_plan['title']). "\n" ;
-//     $mail_body .=  "ご予約日時： " . h($date) . "\n" ;
+//     $mail_body .=  "ご予約日時： " . h($reserve_day) . "\n" ;
+//     $mail_body .=  "ご予約日時： " . h($last_day) . "\n" ;
 //     $mail_body .=  "備考： " . h($remarks) . "\n\n" ;
 
-//     $errors = reserveValidate($date, $people, $email, $name, $tel, $address, $age, $sex);
+    $errors = reserveValidateHotel($first_day, $last_day, $people, $email, $name, $tel, $address, $age, $sex);
 
-//     if (empty($errors)) {
-//         insertReserve($plan_id, $user_id, $reserve_day, $people, $total_amount);
+    if (empty($errors)) {
+        insertReserveHotel($user_id, $plan_id, $first_day, $last_day, $people, $price, $total_amount);
     
-//     header('Location: index.php');
-//     exit;
-//     }
-// }
-
-$id = filter_input(INPUT_GET, 'id');
-$current_user = findUserById($_SESSION['id']);
-$hotel_plan = findHotelplansById($id);
+    header('Location: user/send-mail.php');
+    exit;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -96,7 +109,7 @@ $hotel_plan = findHotelplansById($id);
                 <div id="plan"><?= h($hotel_plan['title']) ?></div>
                 <label for="first_day">宿泊開始日</label>
                 <input type="date" name="first_day" id="first_day" placeholder="first_day" value="<?= h($first_day) ?>">
-                <label for="first_day">宿泊最終日</label>
+                <label for="last_day">宿泊最終日</label>
                 <input type="date" name="last_day" id="last_day" placeholder="last_day" value="<?= h($last_day) ?>">
                 <label for="people">予約人数</label>
                 <input type="number" name="people" id="people" placeholder="Number of people" value="<?= h($people) ?>">
@@ -119,16 +132,11 @@ $hotel_plan = findHotelplansById($id);
                 <?php if (isset($_POST['sex']) && $_POST['sex'] == "3") echo 'checked'; ?>>その他
                 <label for="remarks">備考</label>
                 <textarea rows="5" cols="80" name="remarks" id="remarks" placeholder="ご要望などここに記入してください" value="<?= h($remark) ?>"></textarea>
-                <!-- <div class="btn-area">
+                <div class="btn-area">
                     <input name="submitted" type="submit" value="送信する" class="btn">
-                    <a href="user/send-mail.php" class="btn">送信する</a>
-                    <a href="restaurant-plan.php class="btn home-back-btn">戻る</a>
-                </div> -->
+                    <a href="hotel-plan.php?id=<?= h($hotel_plan['id']) ?>" class="btn home-back-btn">戻る</a>
+                </div>
             </form>
-            <div class="btn-area">
-                    <a href="user/send-mail.php" class="btn">送信する</a>
-                    <a href="hotel-plan.php?=id<?= h($hotel_plan['id']) ?>" class="btn home-back-btn">戻る</a>
-            </div>
         </div>
     </div>
     <footer>

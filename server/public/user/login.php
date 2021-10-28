@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // ログイン処理
         if (password_verify($password, $user['password'])) {
         $_SESSION['id'] = $user['id'];
-        header('Location: ../index.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER'] . '');
         exit;
         } else {
             $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;

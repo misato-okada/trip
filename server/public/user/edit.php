@@ -13,7 +13,7 @@ $id = filter_input(INPUT_GET, 'id');
 $current_user = findUserById($_SESSION['id']);
 
 $email = '';
-$password = '';
+// $password = '';
 $name = '';
 $tel = '';
 $address = '';
@@ -23,17 +23,17 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
-    $password = filter_input(INPUT_POST, 'password');
+    // $password = filter_input(INPUT_POST, 'password');
     $name = filter_input(INPUT_POST, 'name');
     $tel = filter_input(INPUT_POST, 'tel');
     $address = filter_input(INPUT_POST, 'address');
     $birthday = filter_input(INPUT_POST, 'birthday');
     $sex = filter_input(INPUT_POST, 'sex');
 
-    $errors = signupValidate($email, $password, $name, $tel, $address, $birthday, $sex, $id);
+    $errors = signupValidate($email, $name, $tel, $address, $birthday, $sex, $id);
 
     if (empty($errors)) {
-    updateUser($email, $password, $name, $tel, $address, $birthday, $sex, $id);
+    updateUser($email, $name, $tel, $address, $birthday, $sex, $id);
     
     header('Location: user-info.php');
     exit;
@@ -84,8 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="" method="post">
                 <label for="email">メールアドレス</label>
                 <input type="email" name="email" id="email" placeholder="Email" value="<?= h($current_user['email']) ?>">
-                <label for="password">パスワード</label>
-                <input type="password" name="password" id="password" placeholder="Password">
                 <label for="name">氏名</label>
                 <input type="text" name="name" id="name" placeholder="Name" value="<?= h($current_user['name']) ?>">
                 <label for="tel">電話番号</label>

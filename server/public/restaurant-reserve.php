@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     $mail_body .=  "ご予約日時： " . h($reserve_time) . "\n" ;
 //     $mail_body .=  "備考： " . h($remarks) . "\n\n" ;
 
-    $errors = reserveValidate($reserve_day, $reserve_time, $people, $email, $name, $tel, $address, $age, $sex);
+    $errors = reserveValidateRestaurant($reserve_day, $reserve_time, $people, $email, $name, $tel, $address, $age, $sex);
 
     if (empty($errors)) {
         insertReserveRestaurant($user_id, $plan_id, $reserve_day, $reserve_time, $people, $price, $total_amount);
@@ -148,10 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="btn home-back-btn">戻る</a>
                 </div>
             </form>
-            <!-- <div class="btn-area">
-                    <a href="user/send-mail.php" class="btn">送信する</a>
-                    <a href="restaurant-plan.php" class="btn home-back-btn">戻る</a>
-            </div> -->
         </div>
     </div>
     <footer>

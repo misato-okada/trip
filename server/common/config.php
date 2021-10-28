@@ -15,5 +15,8 @@ define('MSG_DATE_REQUIRED', '予約日が未入力です');
 define('MSG_TIME_REQUIRED', '予約時間が未入力です');
 define('MSG_PEPLE_REQUIRED', '予約人数が未入力です');
 define('MSG_AGE_REQUIRED', '年齢が未入力です');
+define('MSG_FIRST_DATE_REQUIRED', '宿泊開始日が未入力です');
+define('MSG_LAST_DAY_REQUIRED', '宿泊最終日が未入力です');
+
 define('MSG_EMAIL_PASSWORD_NOT_MATCH', 'メールアドレスかパスワードが間違っています');
 

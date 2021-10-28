@@ -272,6 +272,9 @@ input:focus {
 .btn:hover {
     opacity: 0.6;
 }
+.favo-btn {
+    background-color: #ebcad1;
+}
 .sub-link {
     display: block;
     text-align: center;
@@ -302,18 +305,25 @@ textarea {
     font-size: 1.4rem;
     margin-bottom: 20px;
 }
-.reserve-link img{
-    width: 30%;
+/* .reserve-link ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
+.reserve-link li {
+    margin: 20px;
 }
-.favo-link ul{
+.reserve-link img{
+    width: 50%;
+}
+/* .favo-link ul{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-}
+} */
 .favo-link li {
-    margin: 0 15px;
+    margin: 30px;
 }
 .favo-link img {
-    width: 100%;
+    width: 50%;
 }
 .mypage-btn {
     text-align: center;

@@ -13,7 +13,11 @@ if (empty($_SESSION['id'])) {
 $id = filter_input(INPUT_GET, 'id');
 $current_user = findUserById($_SESSION['id']);
 $restaurant_plan_id = findRestaurantreservationsById($_SESSION['id']);
+$hotel_plan_id = findHotelreservationsById($_SESSION['id']);
+$favo_restaurants = findRestfavoById($_SESSION['id']);
+$favo_hotels = findHotelfavoById($_SESSION['id']);
 $restaurant_plan = findRestaurantplanById($restaurant_plan_id);
+$hotel_plan = findHotelplanById($hotel_plan_id);
 
 ?>
 <!DOCTYPE html>
@@ -54,12 +58,18 @@ $restaurant_plan = findRestaurantplanById($restaurant_plan_id);
                 <div class="reserve-link">
                     <h4>＜ 予約中プラン ＞</h4>
                     <ul>
-                            <li>
-                                <a href="../restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="opacity">
-                                    <img src="../<?= h($restaurant_plan['image'])?>" alt="プラン写真">
-                                    <p><?= h($restaurant_plan['title']) ?></p>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="../restaurant-plan.php?id=<?= h($restaurant_plan['id']) ?>" class="opacity">
+                                <img src="../<?= h($restaurant_plan['image'])?>" alt="プラン写真">
+                                <p><?= h($restaurant_plan['title']) ?></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../hotel-plan.php?id=<?= h($hotel_plan['id']) ?>" class="opacity">
+                                <img src="../<?= h($hotel_plan['image'])?>" alt="プラン写真">
+                                <p><?= h($hotel_plan['title']) ?></p>
+                            </a>
+                        </li>
                     </ul>
                     <div class="">
                         <a href="">予約履歴一覧</a>
@@ -68,15 +78,14 @@ $restaurant_plan = findRestaurantplanById($restaurant_plan_id);
                 <div class="favo-link">
                     <h4>＜ お気に入り ＞</h4>
                     <ul>
-                        <li>
-                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
+                        <?php foreach ($favo_restaurants as $favo_restaurant): ?>
+                            <li>
+                                <a href="../restaurant-detail.php?id=<?= h($favo_restaurant['id']) ?>" class="opacity">
+                                    <img src="../<?= h($favo_restaurant['img1'])?>" alt="プラン写真">
+                                    <p><?= h($favo_restaurant['name']) ?></p>
+                                </a>
                         </li>
-                        <li>
-                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
-                        </li>
-                        <li>
-                            <a href="" class="opacity"><img src="../images/hotel-view.jpg" alt=""></a>
-                        </li>
+                        <?php endforeach; ?>
                     </ul>
                     <div class="">
                         <a href="">一覧へ</a>
